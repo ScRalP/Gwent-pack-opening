@@ -1,0 +1,98 @@
+h2{
+    color: #09886a;
+    border-bottom: 3px ridge #f7cc4e;
+    margin-left: 2em;
+    margin-right: 2em;
+    text-align: center;
+    text-shadow: 1px 1px black;
+}
+
+/* custom card button */
+.img-card{
+    transition-duration: 200ms;
+}
+
+.img-common:hover{
+    box-shadow: 0px 0px 10px rgb(197, 197, 197);
+    transition-duration: 200ms;
+}
+
+.img-rare:hover{
+    box-shadow: 0px 0px 10px rgb(65, 154, 255);
+    transition-duration: 200ms;
+}
+
+.img-epic:hover{
+    box-shadow: 0px 0px 10px rgb(199, 57, 255);
+    transition-duration: 200ms;
+}
+
+.img-legendary:hover{
+    box-shadow: 0px 0px 10px rgb(255, 252, 52);
+    transition-duration: 200ms;
+}
+
+/* custom btn style */
+.btn{
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgb(54, 30, 18);
+    border: 3px ridge rgb(46, 24, 14);
+}
+
+.btn:hover{
+    border: 3px ridge #09886a;
+    transition-duration: 100ms;
+}
+
+.btn.active{
+    border: 3px ridge #09886a;
+}
+
+/* Add custom font */
+@font-face {
+    font-family: "gwent_font";
+    src: url("../font/hinted-GWENT-ExtraBold.ttf");
+}
+
+body, html {
+    font-family: "gwent_font";
+    height: 100%;
+}
+
+/* Box black */
+* {
+    box-sizing: border-box;
+}
+
+.bg-image {
+    /* The image used */
+    background-image: url("../img/banner.jpeg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-bottom: 5px ridge #f7cc4e;
+    margin-bottom: 20px;
+}
+
+/* Position text in the middle of the page/image */
+.bg-text {
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity/see-through */
+    color: #09886a;
+    font-weight: bold;
+    border: 5px ridge #f7cc4e;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 60%;
+    padding: 20px;
+    text-align: center;
+}
