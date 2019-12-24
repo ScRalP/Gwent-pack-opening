@@ -7,8 +7,6 @@ const nothernCardsBronze   = ["Cintrian_Artificer_3x5.png", "Cintrian_Enchantres
 
 const bronzeCards = [].concat( neutralCardsBronze, monsterCardsBronze, nilfgaardCardsBronze, scoiataelCardsBronze, skelligeCardsBronze, nothernCardsBronze )
 
-console.log( bronzeCards )
-
 const neutralCardsGold   = []
 const monsterCardsGold   = []
 const nilfgaardCardsGold = []
@@ -17,7 +15,3 @@ const skelligeCardsGold  = []
 const nothernCardsGold   = []
 
 const goldCards = [].concat( neutralCardsGold, monsterCardsGold, nilfgaardCardsGold, scoiataelCardsGold, skelligeCardsGold, nothernCardsGold )
-
-const allCards = [].concat( bronzeCards, goldCards )
-
-console.log( allCards )

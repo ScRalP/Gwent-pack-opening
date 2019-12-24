@@ -22,31 +22,44 @@
     </div>
     <!-- endHeader -->
 
-    <div class="container-fluid">
+    <div class="main-container container-fluid">
 
-        <div id="barrel-container" class=" container my-5">
-            <h2>Choose a barrel to open</h2>
+        <!-- Barrel row -->
+        <div class="row">
+            <div id="barrel-container" class="container my-5">
+                <h2>Choose a barrel to open</h2>
+    
+                <div class="row text-center">
+                    <div class="col"><a class="btn-barrel" id="neutral">  <img class="img-fluid" src="img/neutral/neutral_barrel.png" alt="barrel neutral"></a></div>
+                    <div class="col"><a class="btn-barrel" id="monster">  <img class="img-fluid" src="img/monster/monster_barrel.png" alt="barrel monster"></a></div>
+                    <div class="col"><a class="btn-barrel" id="skellige"> <img class="img-fluid" src="img/skellige/skellige_barrel.png" alt="barrel skellige"></a></div>
+                    <div class="col"><a class="btn-barrel" id="scoiatael"><img class="img-fluid" src="img/scoia'tael/scoia'tael_barrel.jpg" alt="barrel scoia'tael"></a></div>
+                    <div class="col"><a class="btn-barrel" id="northern"> <img class="img-fluid" src="img/northern_realm/northern_realm_barrel.png" alt="barrel northern realm"></a></div>
+                    <div class="col"><a class="btn-barrel" id="nilfgaard"><img class="img-fluid" src="img/nilfgaard/nilfgaad_barrel.png" alt="barrel nilfgaad"></a></div>
+                    <div class="col"><a class="btn-barrel" id="syndicat"> <img class="img-fluid" src="img/syndicat/syndicat_barrel.png" alt="barrel syndicat"></a></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Button row -->
+        <div class="row text-center">
+            <div class="col"><button id="btn-open" class="btn text-light">Open</button></div>
+        </div>
 
-            <div class="row text-center">
-                <div class="col"><a class="btn"><img class="img-fluid" src="img/barrels.png" alt="barrel"></a></div>
+        <!-- Card row -->
+        <div style="display: none;">
+            <div id="card-container" class="row text-center col-6 offset-3 my-5">
+                <div class="col"><img class="img-fluid img-card img-common"    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
+                <div class="col"><img class="img-fluid img-card img-common"    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
+                <div class="col"><img class="img-fluid img-card img-rare  "    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
+                <div class="col"><img class="img-fluid img-card img-epic  "    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
+                <div class="col"><img class="img-fluid img-card img-legendary" src="img/neutral/NeutralBack.jpg" alt="No image"></div>
             </div>
         </div>
 
-        <div class="row text-center">
-            <div class="col"><button class="btn text-light">Open</button></div>
-            <div class="col"><button class="btn text-light">Close</button></div>
-        </div>
-
-        <div id="card-container" class="row text-center col-6 offset-3 my-5">
-            <div class="col"><img class="img-fluid img-card img-common"    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
-            <div class="col"><img class="img-fluid img-card img-common"    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
-            <div class="col"><img class="img-fluid img-card img-rare  "    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
-            <div class="col"><img class="img-fluid img-card img-epic  "    src="img/neutral/NeutralBack.jpg" alt="No image"></div>
-            <div class="col"><img class="img-fluid img-card img-legendary" src="img/neutral/NeutralBack.jpg" alt="No image"></div>
-        </div>
-
     </div>
-
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="js/initCards.js"></script>
     <script type="text/javascript" src="js/openBarrel.js"></script>
 </body>

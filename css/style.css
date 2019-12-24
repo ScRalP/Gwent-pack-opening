@@ -60,7 +60,11 @@ body, html {
     height: 100%;
 }
 
-/* Box black */
+.main-container{
+    height: 100%;
+}
+
+/* Header */
 * {
     box-sizing: border-box;
 }
@@ -96,3 +100,27 @@ body, html {
     padding: 20px;
     text-align: center;
 }
+
+
+.btn-barrel img {
+    transition-duration: 200ms;
+    -webkit-filter: drop-shadow(1px 1px 0 black)
+                    drop-shadow(-1px -1px 0 black);
+    filter: drop-shadow(1px 1px 0 black) 
+            drop-shadow(-1px -1px 0 black);
+}
+
+.btn-barrel img:hover {
+    -webkit-filter: drop-shadow(1px 1px 0 #09886a)
+                    drop-shadow(-1px -1px 0 #09886a);
+    filter: drop-shadow(1px 1px 0 #09886a) 
+            drop-shadow(-1px -1px 0 #09886a);
+}
+
+.btn-barrel.active {
+    -webkit-filter: drop-shadow(1px 1px 0 #f7cc4e)
+                    drop-shadow(-1px -1px 0 #f7cc4e);
+    filter: drop-shadow(1px 1px 0 #f7cc4e) 
+            drop-shadow(-1px -1px 0 #f7cc4e);
+}
+
