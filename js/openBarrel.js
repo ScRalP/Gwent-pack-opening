@@ -1,8 +1,11 @@
 // Get the container element
-var btnContainer = $("#barrel-container")
+var barrelContainer = $("#barrel-container")
 
 // Get all buttons with class="btn-barrel" inside the container
-var btns = btnContainer.find(".btn-barrel")
+var btns = barrelContainer.find(".btn-barrel")
+
+//Get the card container
+var cardContainer = $('#card-container')
 
 // Loop through the buttons and add the active class to the current/clicked button
 btns.each(function(){
@@ -21,44 +24,88 @@ $('#btn-open').click(function(){
     let selectedFaction =  $('.btn-barrel.active').attr('id')
 
     if(selectedFaction != null){
+        clearCards()
         openBarrel(selectedFaction)
     } else {
         swal('You must choose a barrel first')
     }
 })
 
+$('#btn-clear').click(function(){
+    clearCards()
+})
+
 // Generate the cards and display them
 function openBarrel(faction){
-    let usedBronzeCards = []
-    let usedGoldCards   = []
+    let usedCommonCards = []
+    let usedRareCards   = []
 
     switch(faction){
         case 'monster':
-            usedBronzeCards = [].concat(monsterCardsBronze)
-            usedGoldCards   = [].concat(monsterCardsGold  )
+            usedCommonCards = [].concat(monsterCardsBronze)
+            usedRareCards   = [].concat(monsterCardsGold  )
             break
         case "nilfgaard":
-            usedBronzeCards = [].concat(nilfgaardCardsBronze)
-            usedGoldCards   = [].concat(nilfgaardCardsGold  )
+            usedCommonCards = [].concat(nilfgaardCardsBronze)
+            usedRareCards   = [].concat(nilfgaardCardsGold  )
             break
         case "skellige":
-            usedBronzeCards = [].concat(skelligeCardsBronze)
-            usedGoldCards   = [].concat(skelligeCardsGold  )
+            usedCommonCards = [].concat(skelligeCardsBronze)
+            usedRareCards   = [].concat(skelligeCardsGold  )
             break
-        case "scoia'tael":
-            usedBronzeCards = [].concat(scoiataelCardsBronze)
-            usedGoldCards   = [].concat(scoiataelCardsGold  )
+        case "scoiatael":
+            usedCommonCards = [].concat(scoiataelCardsBronze)
+            usedRareCards   = [].concat(scoiataelCardsGold  )
             break
         case "northern":
-            usedBronzeCards = [].concat(nothernCardsBronze)
-            usedGoldCards   = [].concat(nothernCardsGold  )
+            usedCommonCards = [].concat(northernCardsBronze)
+            usedRareCards   = [].concat(northernCardsGold  )
             break
-        default:
-            usedBronzeCards = [].concat(bronzeCards)
-            usedGoldCards   = [].concat(goldCards  )
+        case "neutral":
+            usedCommonCards = [].concat(bronzeCards)
+            usedRareCards   = [].concat(goldCards  )
             break
     }
 
-    console.log(usedBronzeCards)
-    console.log(usedGoldCards)
+    commonDisplayCards = []
+    //Pick random cards (4 bronze and 1 gold)
+    while(commonDisplayCards.length < 4){
+        let rand = getRandomInt(usedCommonCards.length)
+
+        commonDisplayCards.push( usedCommonCards[rand] )
+        usedCommonCards.splice(rand, 1)
+    }
+    //pick 3 gold card to make the user choose
+    rareDisplayCards = []
+    while(rareDisplayCards.length<3){
+        let rand = getRandomInt(usedRareCards.length)
+
+        rareDisplayCards.push( usedRareCards[rand] )
+        usedRareCards.splice(rand, 1)
+    }
+
+    displayCards(commonDisplayCards, rareDisplayCards)
+}
+
+function displayCards(commons) {
+
+    //Créer une balise img pour toute les cartes
+    for(i=0; i<commons.length; i++){
+        newDiv = $('<div class="col"></div>')
+        newCard = $('<img class="img-fluid img-card card-common" id="card_'+i+'" src="'+commons[i]+'" alt="'+commons[i]+'">')
+        newDiv.append(newCard)
+        cardContainer.append(newDiv)
+    }
+
+}
+
+//Renvoie un entier aléatoire entre 0 et la valeure passé en paramètre
+function getRandomInt(max) {
+    min = 0
+    max = Math.floor(max)
+    return Math.floor(Math.random() * (max - min)) + min;
+}
+
+function clearCards(){
+    cardContainer.empty()
 }
