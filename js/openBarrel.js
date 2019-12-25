@@ -53,10 +53,6 @@ function openBarrel(faction){
             usedBronzeCards = [].concat(nothernCardsBronze)
             usedGoldCards   = [].concat(nothernCardsGold  )
             break
-        case "syndicat":
-            usedBronzeCards = [].concat(nothernCardsBronze)
-            usedGoldCards   = [].concat(nothernCardsGold  )
-            break
         default:
             usedBronzeCards = [].concat(bronzeCards)
             usedGoldCards   = [].concat(goldCards  )
