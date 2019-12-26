@@ -121,23 +121,23 @@ body, html {
 
 .btn-barrel img {
     transition-duration: 200ms;
-    -webkit-filter: drop-shadow(1px 1px 0 black)
-                    drop-shadow(-1px -1px 0 black);
-    filter: drop-shadow(1px 1px 0 black) 
-            drop-shadow(-1px -1px 0 black);
+    -webkit-filter: drop-shadow(0 0 1px black)
+                    drop-shadow(0 0 1px black);
+    filter: drop-shadow(0 0 1px black) 
+            drop-shadow(0 0 1px black);
 }
 
 .btn-barrel img:hover {
-    -webkit-filter: drop-shadow(1px 1px 0 #09886a)
-                    drop-shadow(-1px -1px 0 #09886a);
-    filter: drop-shadow(1px 1px 0 #09886a) 
-            drop-shadow(-1px -1px 0 #09886a);
+    -webkit-filter: drop-shadow(0 0 3px #09886a)
+                    drop-shadow(0 0 3px #09886a);
+    filter: drop-shadow(0 0 3px #09886a) 
+            drop-shadow(0 0 3px #09886a);
 }
 
 .btn-barrel.active {
-    -webkit-filter: drop-shadow(1px 1px 0 #f7cc4e)
-                    drop-shadow(-1px -1px 0 #f7cc4e);
-    filter: drop-shadow(1px 1px 0 #f7cc4e) 
-            drop-shadow(-1px -1px 0 #f7cc4e);
+    -webkit-filter: drop-shadow(0 0 3px #f7cc4e)
+                    drop-shadow(0 0 3px #f7cc4e);
+    filter: drop-shadow(0 0 3px #f7cc4e) 
+            drop-shadow(0 0 3px #f7cc4e);
 }
 
