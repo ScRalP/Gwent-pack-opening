@@ -87,16 +87,54 @@ function openBarrel(faction){
     displayCards(commonDisplayCards, rareDisplayCards)
 }
 
-function displayCards(commons) {
+function displayCards(commons, rares) {
 
-    //Créer une balise img pour toute les cartes
+    //Créer une balise img pour toute les cartes communes
+    firstRow = $('<div class="row my-1"></div>')
     for(i=0; i<commons.length; i++){
         newDiv = $('<div class="col"></div>')
-        newCard = $('<img class="img-fluid img-card card-common" id="card_'+i+'" src="'+commons[i]+'" alt="'+commons[i]+'">')
-        newDiv.append(newCard)
-        cardContainer.append(newDiv)
-    }
+        faction = commons[i].split("/")[1]
+        backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
+        newCard = $('<img class="img-fluid img-card card-common" id="card_common_'+i+'" src="'+backPath+'" alt="'+commons[i]+'">')
+        //Handle click to reveal the card
+        newCard.click(function(){
+            reveal(this)
+        })
 
+        newDiv.append(newCard)
+        firstRow.append(newDiv)
+    }
+    cardContainer.append(firstRow)
+    
+    //Créer une balise img pour toute les cartes rares
+    secondRow = $('<div class="row my-1"></div>')
+    for(i=0; i<rares.length; i++){
+        newDiv = $('<div class="col"></div>')
+        faction = rares[i].split("/")[1]
+        backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
+        newCard = $('<img class="img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+backPath+'" alt="'+rares[i]+'">')
+        //Handle click to reveal the card
+        newCard.click(function(){
+            reveal(this)
+        })
+
+        newDiv.append(newCard)
+        secondRow.append(newDiv)
+    }
+    cardContainer.append(secondRow)
+
+}
+
+function reveal(card){
+    num = card.getAttribute("id").split('_')[2]
+    categ = card.getAttribute("id").split('_')[1]
+
+    if( categ == "rare" ){
+        card.setAttribute( "src", rareDisplayCards[num] )
+    } else {
+        card.setAttribute( "src", commonDisplayCards[num] )
+    }
+    
 }
 
 //Renvoie un entier aléatoire entre 0 et la valeure passé en paramètre
