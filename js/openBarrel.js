@@ -7,6 +7,8 @@ var btns = barrelContainer.find(".btn-barrel")
 //Get the card container
 var cardContainer = $('#card-container')
 
+var $commonCards = []
+
 // Loop through the buttons and add the active class to the current/clicked button
 btns.each(function(){
     $(this).click(function(){
@@ -90,13 +92,37 @@ function openBarrel(faction){
 function displayCards(commons, rares) {
 
     //Créer une balise img pour toute les cartes communes
-    firstRow = $('<div class="row my-1"></div>')
+    firstRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<commons.length; i++){
         newDiv = $('<div class="col"></div>')
+        //Faction can change on each card
         faction = commons[i].split("/")[1]
         backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
-        newCard = $('<img class="img-fluid img-card card-common" id="card_common_'+i+'" src="'+backPath+'" alt="'+commons[i]+'">')
-        //Handle click to reveal the card
+        newCard = $('<img class="w-100 img-fluid img-card card-common" id="card_common_'+i+'" src="'+backPath+'" alt="'+commons[i]+'">')
+        
+        $commonCards.push(newCard)
+
+        //Add middle locked card
+        if( i == 2) {
+            middleDiv = $('<div class="col"></div>')
+            middleCard = $('<img class="w-100 img-fluid img-card card-legendary" id="middle_card" src="img/neutral/NeutralBack.jpg" alt="Locked card">')
+        
+            middleCard.click(function(){
+                revealAll($commonCards)
+                displayRares(rares)
+                middleDiv.remove()
+                hideMiddlePopover()
+            })
+
+            middleCard.hover(function(){
+                displayMiddleInfo()
+            })
+
+            middleDiv.append(middleCard)
+            firstRow.append(middleDiv)
+        }
+        
+        //Add click event listener to the created card
         newCard.click(function(){
             reveal(this)
         })
@@ -105,14 +131,17 @@ function displayCards(commons, rares) {
         firstRow.append(newDiv)
     }
     cardContainer.append(firstRow)
-    
+}
+
+function displayRares(rares){
     //Créer une balise img pour toute les cartes rares
-    secondRow = $('<div class="row my-1"></div>')
+    secondRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<rares.length; i++){
         newDiv = $('<div class="col"></div>')
         faction = rares[i].split("/")[1]
         backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
-        newCard = $('<img class="img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+backPath+'" alt="'+rares[i]+'">')
+        newCard = $('<img class="w-100 img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+backPath+'" alt="'+rares[i]+'">')
+        
         //Handle click to reveal the card
         newCard.click(function(){
             reveal(this)
@@ -122,7 +151,12 @@ function displayCards(commons, rares) {
         secondRow.append(newDiv)
     }
     cardContainer.append(secondRow)
+}
 
+function revealAll(cards){
+    for(i = 0; i<cards.length; i++){
+        reveal( cards[i].get(0) )
+    }
 }
 
 function reveal(card){
@@ -134,6 +168,10 @@ function reveal(card){
     } else {
         card.setAttribute( "src", commonDisplayCards[num] )
     }
+
+    $(card).mouseover(function(){
+        displayCardInfo(this)
+    })
     
 }
 

@@ -99,7 +99,6 @@ body, html {
     background-size: cover;
 
     border-bottom: 5px ridge #f7cc4e;
-    margin-bottom: 20px;
 }
 
 /* Position text in the middle of the page/image */
@@ -118,7 +117,7 @@ body, html {
     text-align: center;
 }
 
-
+/* barrel styling */
 .btn-barrel img {
     transition-duration: 200ms;
     -webkit-filter: drop-shadow(0 0 1px black)
@@ -141,3 +140,20 @@ body, html {
             drop-shadow(0 0 3px #f7cc4e);
 }
 
+/* Popover styling */
+.popover{
+    font-family: "gwent_font";
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgb(54, 30, 18);
+    border: 3px ridge rgb(46, 24, 14);
+}
+
+.popover .arrow:after{
+    border-bottom-color: rgb(46, 24, 14);
+}
+
+.popover .popover-body{
+    text-align: center;
+    color: lightgray;
+}
