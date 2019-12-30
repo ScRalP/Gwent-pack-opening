@@ -92,7 +92,7 @@ function openBarrel(faction){
 function displayCards(commons, rares) {
 
     //Créer une balise img pour toute les cartes communes
-    firstRow = $('<div class="row col-12 my-2"></div>')
+    secondRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<commons.length; i++){
         newDiv = $('<div class="col"></div>')
         //Faction can change on each card
@@ -119,7 +119,7 @@ function displayCards(commons, rares) {
             })
 
             middleDiv.append(middleCard)
-            firstRow.append(middleDiv)
+            secondRow.append(middleDiv)
         }
         
         //Add click event listener to the created card
@@ -128,14 +128,14 @@ function displayCards(commons, rares) {
         })
 
         newDiv.append(newCard)
-        firstRow.append(newDiv)
+        secondRow.append(newDiv)
     }
-    cardContainer.append(firstRow)
+    cardContainer.append(secondRow)
 }
 
 function displayRares(rares){
     //Créer une balise img pour toute les cartes rares
-    secondRow = $('<div class="row col-12 my-2"></div>')
+    firstRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<rares.length; i++){
         newDiv = $('<div class="col"></div>')
         faction = rares[i].split("/")[1]
@@ -148,9 +148,9 @@ function displayRares(rares){
         })
 
         newDiv.append(newCard)
-        secondRow.append(newDiv)
+        firstRow.append(newDiv)
     }
-    cardContainer.append(secondRow)
+    cardContainer.prepend(firstRow)
 }
 
 function revealAll(cards){
