@@ -109,7 +109,7 @@ function displayCards(commons, rares) {
         
             middleCard.click(function(){
                 revealAll($commonCards)
-                displayRares(rares)
+                displayRares(commons, rares)
                 middleDiv.remove()
                 hideMiddlePopover()
             })
@@ -133,22 +133,52 @@ function displayCards(commons, rares) {
     cardContainer.append(secondRow)
 }
 
-function displayRares(rares){
+function displayRares(commons, rares){
     //Créer une balise img pour toute les cartes rares
     firstRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<rares.length; i++){
         newDiv = $('<div class="col"></div>')
         newCard = $('<img class="w-100 img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+rares[i]+'" alt="'+rares[i]+'">')
         
-        //Handle click to reveal the card
+        //Handle click to choose the card
         newCard.click(function(){
-            reveal(this)
+            displayFinal(commons, this)
         })
 
         newDiv.append(newCard)
         firstRow.append(newDiv)
     }
+
+    message = $('<h3 class="col-12">Choose a card to keep</h3>')
+
     cardContainer.prepend(firstRow)
+    cardContainer.prepend(message)
+}
+
+function displayFinal(commons, rare){
+
+    //Clear cards to display all again
+    clearCards()
+
+    row = $('<div class="row col-12 my-2"></div>')
+    for(i = 0; i<commons.length; i++){
+        newDiv = $('<div class="col"></div>')
+
+        //Create all cards
+        newCard = $('<img class="w-100 img-fluid img-card card-common" id="card_common_'+i+'" src="'+commons[i]+'" alt="'+commons[i]+'">')
+
+        if(i == 2){
+            middleDiv = $('<div class="col"></div>')
+            middleCard = rare
+
+            middleDiv.append(middleCard)
+            row.append(middleDiv)
+        }
+
+        newDiv.append(newCard)
+        row.append(newDiv)
+    }
+    cardContainer.append(row)
 }
 
 function revealAll(cards){
@@ -170,7 +200,6 @@ function reveal(card){
     $(card).mouseover(function(){
         displayCardInfo(this)
     })
-    
 }
 
 //Renvoie un entier aléatoire entre 0 et la valeure passé en paramètre
