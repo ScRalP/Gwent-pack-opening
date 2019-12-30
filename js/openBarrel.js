@@ -138,9 +138,7 @@ function displayRares(rares){
     firstRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<rares.length; i++){
         newDiv = $('<div class="col"></div>')
-        faction = rares[i].split("/")[1]
-        backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
-        newCard = $('<img class="w-100 img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+backPath+'" alt="'+rares[i]+'">')
+        newCard = $('<img class="w-100 img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+rares[i]+'" alt="'+rares[i]+'">')
         
         //Handle click to reveal the card
         newCard.click(function(){
