@@ -62,7 +62,6 @@ function openBarrel(faction){
             }
             break
         case "nilfgaard":
-            console.log(nilfgaardCards)
             for(i = 0; i<nilfgaardCards.length; i++){
                 if(nilfgaardCards[i].rarity == "common"   ) usedCommonCards.push(nilfgaardCards[i])
                 if(nilfgaardCards[i].rarity == "rare"     ) usedRareCards.push(nilfgaardCards[i])
@@ -103,12 +102,16 @@ function openBarrel(faction){
             }
             break
     }
-
-    console.log(usedCommonCards)
-    console.log(usedRareCards)
-    console.log(usedEpicCards)
-    console.log(usedLegendaryCards)
-
+/*
+    // Visualiser le contenu des tableaux de cartes apres les avoir actualisé
+    console.log("--------------------------------")
+    console.log("apres : ")
+    console.log(JSON.parse(JSON.stringify(usedCommonCards)))
+    console.log(JSON.parse(JSON.stringify(usedRareCards)))
+    console.log(JSON.parse(JSON.stringify(usedEpicCards)))
+    console.log(JSON.parse(JSON.stringify(usedLegendaryCards)))
+    console.log("--------------------------------")
+*/
     //Generate cards randomly
     commonDisplayCards = generateRandomCards(false)
 
@@ -126,17 +129,16 @@ function displayCards(commons, rares) {
     for(i=0; i<commons.length; i++){
         newDiv = $('<div class="col"></div>')
         //Faction can change on each card
-        console.log(commons[i])
         faction = commons[i].path.split("/")[1]
         backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
-        newCard = $('<img class="w-100 img-fluid img-card card-common" id="card_common_'+i+'" src="'+backPath+'" alt="'+commons[i]+'">')
+        newCard = $('<img class="w-100 img-fluid img-card card-'+ commons[i].rarity +'" id="card_common_'+i+'" src="'+backPath+'" alt="'+commons[i].path+'">')
         
         $commonCards.push(newCard)
 
         //Add middle locked card
         if( i == 2) {
             middleDiv = $('<div class="col"></div>')
-            middleCard = $('<img class="w-100 img-fluid img-card card-legendary" id="middle_card" src="img/neutral/NeutralBack.jpg" alt="Locked card">')
+            middleCard = $('<img class="w-100 img-fluid img-card card-'+ rares[0].rarity +'" id="middle_card" src="img/neutral/NeutralBack.jpg" alt="Locked card">')
         
             middleCard.click(function(){
                 revealAll($commonCards)
@@ -169,7 +171,7 @@ function displayRares(commons, rares){
     firstRow = $('<div class="row col-12 my-2"></div>')
     for(i=0; i<rares.length; i++){
         newDiv = $('<div class="col"></div>')
-        newCard = $('<img class="w-100 img-fluid img-card card-epic" id="card_rare_'+i+'" src="'+rares[i]+'" alt="'+rares[i]+'">')
+        newCard = $('<img class="w-100 img-fluid img-card card-'+ rares[i].rarity +'" id="card_rare_'+i+'" src="'+rares[i].path+'" alt="'+rares[i].path+'">')
         
         //Handle click to choose the card
         newCard.click(function(){
@@ -196,7 +198,7 @@ function displayFinal(commons, rare){
         newDiv = $('<div class="col"></div>')
 
         //Create all cards
-        newCard = $('<img class="w-100 img-fluid img-card card-common" id="card_common_'+i+'" src="'+commons[i]+'" alt="'+commons[i]+'">')
+        newCard = $('<img class="w-100 img-fluid img-card card-'+ commons[i].rarity +'" id="card_common_'+i+'" src="'+commons[i].path+'" alt="'+commons[i].path+'">')
 
         if(i == 2){
             middleDiv = $('<div class="col"></div>')
@@ -213,6 +215,7 @@ function displayFinal(commons, rare){
 }
 
 function revealAll(cards){
+    console.log(cards)
     for(i = 0; i<cards.length; i++){
         reveal( cards[i].get(0) )
     }
@@ -223,14 +226,10 @@ function reveal(card){
     categ = card.getAttribute("id").split('_')[1]
 
     if( categ == "rare" ){
-        card.setAttribute( "src", rareDisplayCards[num] )
+        card.setAttribute( "src", rareDisplayCards[num].path )
     } else {
-        card.setAttribute( "src", commonDisplayCards[num] )
+        card.setAttribute( "src", commonDisplayCards[num].path )
     }
-
-    $(card).mouseover(function(){
-        displayCardInfo(this)
-    })
 }
 
 //Renvoie un entier aléatoire entre 0 et la valeure passé en paramètre

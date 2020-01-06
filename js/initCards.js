@@ -4,7 +4,8 @@ const neutralCards = [
     {"path":"Moon_Dust_5.png"         , "rarity":"common"},
     {"path":"Peasant_Militia_2x4.png" , "rarity":"common"},
     {"path":"Rock_Barrage_6.png"      , "rarity":"rare"},
-    {"path":"Spring_Equinox_4.png"    , "rarity":"rare"},   
+    {"path":"Spring_Equinox_4.png"    , "rarity":"rare"},  
+    {"path":"Spring_Equinox_4.png"    , "rarity":"rare"}, //à modifier 
 
     {"path":"Aguara_5x9.png"         , "rarity":"epic"},   
     {"path":"Avallac'h_6x8.png"      , "rarity":"epic"},   
@@ -22,6 +23,7 @@ const monsterCards = [
     {"path":"Foglet_3x5.png"           , "rarity":"common"},
     {"path":"Kikimore_Warrior_3x4.png" , "rarity":"rare"},
     {"path":"Predatory_Dive_5.png"     , "rarity":"rare"},
+    {"path":"Predatory_Dive_5.png"     , "rarity":"rare"}, //à modifier 
 
     {"path":"Armored_Crab-Spider_6x8.png" , "rarity":"epic"},
     {"path":"Cave_Troll_7x9.png"          , "rarity":"epic"},
@@ -38,6 +40,7 @@ const nilfgaardCards = [
     {"path":"Recruit_4x4.png"                  , "rarity":"common"},
     {"path":"Slave_Hunter_1x5.png"             , "rarity":"rare"},
     {"path":"Tourney_Joust_4.png"              , "rarity":"rare"},
+    {"path":"Tourney_Joust_4.png"              , "rarity":"rare"}, //à modifier 
 
     {"path":"Artorius_Vigo_2x9.png"           , "rarity":"epic"},
     {"path":"Fifon_var_Gaernel_2x9.png"       , "rarity":"epic"},
@@ -54,6 +57,7 @@ const scoiataelCards = [
     {"path":"Forest_Whisperer_3x5.png"  , "rarity":"common"},
     {"path":"Miner_3x5.png"             , "rarity":"rare"},
     {"path":"Tempering_4.png"           , "rarity":"rare"},
+    {"path":"Tempering_4.png"           , "rarity":"rare"}, //à modifier 
 
     {"path":"Barnabas_Beckenbauer_6x10.png" , "rarity":"epic"},
     {"path":"Gabor_Zigrin_5x10.png"         , "rarity":"epic"},
@@ -70,6 +74,7 @@ const skelligeCards = [
     {"path":"Drummond_Warmonger_4x5.png" , "rarity":"common"},
     {"path":"Svalblod_Butcher_4x4.png"   , "rarity":"rare"},
     {"path":"Tuirseach_Axeman_2x4.png"   , "rarity":"rare"},
+    {"path":"Tuirseach_Axeman_2x4.png"   , "rarity":"rare"}, //à modifier 
 
     {"path":"Arnvald_4x6.png"               , "rarity":"epic"},
     {"path":"Champion_of_Svalblod_12x9.png" , "rarity":"epic"},
@@ -85,7 +90,8 @@ const northernCards = [
     {"path":"Cintrian_Envoy_3x5.png"       , "rarity":"common"},
     {"path":"Cintrian_Knight_2x4.png"      , "rarity":"common"},
     {"path":"Cintrian_Royal_Guard_4x5.png" , "rarity":"rare"},
-    {"path":"Cintrian_Spellweaver_4x5.png" , "rarity":"rare"},
+    {"path":"Cintrian_Spellweaver_4x5.png" , "rarity":"rare"}, 
+    {"path":"Cintrian_Spellweaver_4x5.png" , "rarity":"rare"}, //à modifier 
     
     {"path":"Anna_Strenger_4x6.png"  , "rarity":"epic"},
     {"path":"Black_Rayla_3x7.png"    , "rarity":"epic"},
