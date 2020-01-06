@@ -9,7 +9,7 @@ var cardContainer = $('#card-container')
 
 var $commonCards = []
 
-// Loop through the buttons and add the active class to the current/clicked button
+// Loop through the barrels and add the active class to the current barrel
 btns.each(function(){
     $(this).click(function(){
         var current = $(".btn-barrel.active")
@@ -21,7 +21,7 @@ btns.each(function(){
     })
 })
 
-//Gandle click on open
+//Handle click on open
 $('#btn-open').click(function(){
     let selectedFaction =  $('.btn-barrel.active').attr('id')
 
@@ -33,59 +33,89 @@ $('#btn-open').click(function(){
     }
 })
 
+//Handle click on clear
 $('#btn-clear').click(function(){
     clearCards()
 })
 
+var usedCommonCards    
+var usedRareCards      
+var usedEpicCards      
+var usedLegendaryCards 
+
 // Generate the cards and display them
 function openBarrel(faction){
-    let usedCommonCards = []
-    let usedRareCards   = []
+
+    //Nettoie les tableaux avant de les replir
+    usedCommonCards    = []
+    usedRareCards      = []
+    usedEpicCards      = []
+    usedLegendaryCards = []
 
     switch(faction){
         case 'monster':
-            usedCommonCards = [].concat(monsterCardsBronze)
-            usedRareCards   = [].concat(monsterCardsGold  )
+            for(i = 0; i<monsterCards.length; i++){
+                if(monsterCards[i].rarity == "common"   ) usedCommonCards.push(monsterCards[i])
+                if(monsterCards[i].rarity == "rare"     ) usedRareCards.push(monsterCards[i])
+                if(monsterCards[i].rarity == "epic"     ) usedEpicCards.push(monsterCards[i])
+                if(monsterCards[i].rarity == "legendary") usedLegendaryCards.push(monsterCards[i])
+            }
             break
         case "nilfgaard":
-            usedCommonCards = [].concat(nilfgaardCardsBronze)
-            usedRareCards   = [].concat(nilfgaardCardsGold  )
+            console.log(nilfgaardCards)
+            for(i = 0; i<nilfgaardCards.length; i++){
+                if(nilfgaardCards[i].rarity == "common"   ) usedCommonCards.push(nilfgaardCards[i])
+                if(nilfgaardCards[i].rarity == "rare"     ) usedRareCards.push(nilfgaardCards[i])
+                if(nilfgaardCards[i].rarity == "epic"     ) usedEpicCards.push(nilfgaardCards[i])
+                if(nilfgaardCards[i].rarity == "legendary") usedLegendaryCards.push(nilfgaardCards[i])
+            }
             break
         case "skellige":
-            usedCommonCards = [].concat(skelligeCardsBronze)
-            usedRareCards   = [].concat(skelligeCardsGold  )
+            for(i = 0; i<skelligeCards.length; i++){
+                if(skelligeCards[i].rarity == "common"   ) usedCommonCards.push(skelligeCards[i])
+                if(skelligeCards[i].rarity == "rare"     ) usedRareCards.push(skelligeCards[i])
+                if(skelligeCards[i].rarity == "epic"     ) usedEpicCards.push(skelligeCards[i])
+                if(skelligeCards[i].rarity == "legendary") usedLegendaryCards.push(skelligeCards[i])
+            }
             break
         case "scoiatael":
-            usedCommonCards = [].concat(scoiataelCardsBronze)
-            usedRareCards   = [].concat(scoiataelCardsGold  )
+            for(i = 0; i<scoiataelCards.length; i++){
+                if(scoiataelCards[i].rarity == "common"   ) usedCommonCards.push(scoiataelCards[i])
+                if(scoiataelCards[i].rarity == "rare"     ) usedRareCards.push(scoiataelCards[i])
+                if(scoiataelCards[i].rarity == "epic"     ) usedEpicCards.push(scoiataelCards[i])
+                if(scoiataelCards[i].rarity == "legendary") usedLegendaryCards.push(scoiataelCards[i])
+            }
             break
         case "northern":
-            usedCommonCards = [].concat(northernCardsBronze)
-            usedRareCards   = [].concat(northernCardsGold  )
+            for(i = 0; i<northernCards.length; i++){
+                if(northernCards[i].rarity == "common"   ) usedCommonCards.push(northernCards[i])
+                if(northernCards[i].rarity == "rare"     ) usedRareCards.push(northernCards[i])
+                if(northernCards[i].rarity == "epic"     ) usedEpicCards.push(northernCards[i])
+                if(northernCards[i].rarity == "legendary") usedLegendaryCards.push(northernCards[i])
+            }
             break
         case "neutral":
-            usedCommonCards = [].concat(bronzeCards)
-            usedRareCards   = [].concat(goldCards  )
+            for(i = 0; i<allCards.length; i++){
+                if(allCards[i].rarity == "common"   ) usedCommonCards.push(allCards[i])
+                if(allCards[i].rarity == "rare"     ) usedRareCards.push(allCards[i])
+                if(allCards[i].rarity == "epic"     ) usedEpicCards.push(allCards[i])
+                if(allCards[i].rarity == "legendary") usedLegendaryCards.push(allCards[i])
+            }
             break
     }
 
-    commonDisplayCards = []
-    //Pick random cards (4 bronze and 1 gold)
-    while(commonDisplayCards.length < 4){
-        let rand = getRandomInt(usedCommonCards.length)
+    console.log(usedCommonCards)
+    console.log(usedRareCards)
+    console.log(usedEpicCards)
+    console.log(usedLegendaryCards)
 
-        commonDisplayCards.push( usedCommonCards[rand] )
-        usedCommonCards.splice(rand, 1)
-    }
-    //pick 3 gold card to make the user choose
-    rareDisplayCards = []
-    while(rareDisplayCards.length<3){
-        let rand = getRandomInt(usedRareCards.length)
+    //Generate cards randomly
+    commonDisplayCards = generateRandomCards(false)
 
-        rareDisplayCards.push( usedRareCards[rand] )
-        usedRareCards.splice(rand, 1)
-    }
+    //Generate 3 cards of the same rarity for the user to pick one
+    rareDisplayCards = generateRandomCards(true)
 
+    //Afficher les cartes
     displayCards(commonDisplayCards, rareDisplayCards)
 }
 
@@ -96,7 +126,8 @@ function displayCards(commons, rares) {
     for(i=0; i<commons.length; i++){
         newDiv = $('<div class="col"></div>')
         //Faction can change on each card
-        faction = commons[i].split("/")[1]
+        console.log(commons[i])
+        faction = commons[i].path.split("/")[1]
         backPath = "img/" + faction + "/" + faction.charAt(0).toUpperCase() + faction.slice(1) + "Back.jpg"
         newCard = $('<img class="w-100 img-fluid img-card card-common" id="card_common_'+i+'" src="'+backPath+'" alt="'+commons[i]+'">')
         
