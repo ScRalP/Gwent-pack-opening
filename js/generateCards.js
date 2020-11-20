@@ -52,8 +52,6 @@ function generateRandomCards(isRare){
 
             cards.push( usedCards[getRandomInt(usedCards.length)] )
         }
-
-        //console.log(usedCommonCards)
     }
 
     return cards
